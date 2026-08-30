@@ -1,0 +1,22 @@
+{
+  "name": "finpilot-ai",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "node scripts/dev-all.mjs",
+    "dev": "node scripts/dev-all.mjs",
+    "dev:apps": "concurrently -n api,web -c cyan,magenta \"npm run dev -w api\" \"npm run dev -w web\"",
+    "dev:web": "npm run dev -w web",
+    "dev:api": "npm run dev -w api",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:migrate": "npm run prisma:migrate -w api",
+    "db:generate": "npm run prisma:generate -w api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
